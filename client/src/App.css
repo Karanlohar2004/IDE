@@ -1,0 +1,182 @@
+:root {
+  --bg-dark: #1e1e1e;       /* Main editor background */
+  --bg-sidebar: #252526;    /* Sidebar background */
+  --bg-activity: #333333;   /* Far left activity bar */
+  --bg-panel: #1e1e1e;      /* Bottom terminal panel */
+  --border-color: #3e3e42;  /* Borders */
+  --text-primary: #cccccc;
+  --text-secondary: #858585;
+  --accent-color: #007acc;  /* VS Code Blue */
+  --hover-color: #2a2d2e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  overflow: hidden; /* Prevent full page scroll */
+}
+
+/* --- Layout Grid --- */
+.ide-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Activity Bar (Far Left) */
+.activity-bar {
+  width: 48px;
+  background-color: var(--bg-activity);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.activity-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.activity-icon.active {
+  border-left: 2px solid var(--text-primary);
+  opacity: 1;
+}
+
+/* Sidebar (Explorer) */
+.sidebar {
+  width: 250px;
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+  padding: 10px 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.file-explorer {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 5px;
+}
+
+/* Tree Node Styling */
+.tree-element {
+  cursor: pointer;
+  padding: 3px 0;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+}
+
+.tree-element:hover {
+  background-color: var(--hover-color);
+}
+
+.file-icon {
+  margin-right: 6px;
+  font-size: 14px;
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+}
+
+/* Main Content Area */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Fix flex overflow issues */
+}
+
+/* Editor Section */
+.editor-container {
+  flex: 1; /* Takes available space */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+}
+
+.editor-tabs {
+  height: 35px;
+  background-color: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color); /* Separator between tab and code */
+}
+
+.tab {
+  padding: 8px 15px;
+  background-color: var(--bg-dark);
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid transparent;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab.active {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  border-top: 1px solid var(--accent-color);
+}
+
+.unsaved-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Terminal Section */
+.terminal-container {
+  height: 250px; /* Fixed height for terminal */
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header {
+  padding: 5px 15px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-sidebar);
+}
+
+.terminal-wrapper {
+  flex: 1;
+  padding: 10px;
+  overflow: hidden; /* Important for xterm fit */
+}
