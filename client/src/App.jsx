@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const response = await fetch("http://localhost:9000/api/session");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/session`);
         if (response.ok) {
           const session = await response.json();
           if (session.openTabs && session.openTabs.length > 0) {
@@ -56,7 +56,7 @@ function App() {
   // Persist Session state to the Database on state change
   const persistSession = async (active, tabs, port) => {
     try {
-      await fetch("http://localhost:9000/api/session", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -153,7 +153,7 @@ function App() {
   // Fetch file tree list
   const getFileTree = async () => {
     try {
-      const response = await fetch("http://localhost:9000/files");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/files`);
       const result = await response.json();
       setFileTree(result.tree);
     } catch (err) {
@@ -166,7 +166,7 @@ function App() {
     if (!selectedFile) return;
     try {
       const response = await fetch(
-        `http://localhost:9000/files/content?path=${selectedFile}`
+       `${import.meta.env.VITE_API_URL}/files/content?path=${selectedFile}`
       );
       const result = await response.json();
       setSelectedFileContent(result.content);
