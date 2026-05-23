@@ -3,7 +3,7 @@ const fs = require('fs/promises');
 const path = require('path');
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/IDE";
-const ATLAS_URI = "mongodb+srv://IDE:ide123@cluster0.vjauinb.mongodb.net/IDE";
+const ATLAS_URI = process.env.ATLAS_URI;
 const JSON_DB_PATH = path.join(__dirname, 'session.json');
 
 let isMongoConnected = false;
